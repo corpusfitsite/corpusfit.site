@@ -2,7 +2,7 @@ const express = require('express');
 const next = require('next');
 const path = require('path');
 const fs = require('fs');
-const db = require('./pages/api/db');
+const db = require('./lib/db'); 
 // Definimos o diretório de uploads a partir da variável de ambiente, ou default local
 const uploadsDir = process.env.UPLOADS_DIR || path.join(__dirname, 'uploads');
 
