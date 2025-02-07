@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../styles/PaymentBell.module.css';
 
 export interface PaymentData {
-  enrollmentDate: string;         // Data da matrícula (YYYY-MM-DD)
+  enrollmentDate: string;         
   enrollmentFee: number;          // Preço da matrícula
   dueDay: number;                 // Dia de vencimento, definido pelo professor
   history: Record<string, boolean>; // Histórico de pagamentos (chave: "YYYY-MM", valor: true se pago)
