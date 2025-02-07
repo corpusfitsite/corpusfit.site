@@ -1,5 +1,7 @@
 // AlunoDashboard.tsx
+import PaymentBell from '../components/PaymentBell';
 
+import { PaymentData } from '../components/PaymentBell';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/AlunoDashboard.module.css';
@@ -59,6 +61,11 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+const getCurrentMonth = (): string => {
+  const today = new Date();
+  return `${today.getFullYear()}-${('0' + (today.getMonth() + 1)).slice(-2)}`;
+};
+
 const AlunoDashboard = () => {
   const [alunoData, setAlunoData] = useState<AlunoData | null>(null);
   const [treinos, setTreinos] = useState<Treino[]>([]);
@@ -70,7 +77,10 @@ const AlunoDashboard = () => {
   const [selectedTreinoId, setSelectedTreinoId] = useState<string>('');
   const [expandedTreinos, setExpandedTreinos] = useState<string[]>([]);
   const router = useRouter();
+  const [paymentStatuses, setPaymentStatuses] = useState<Record<number, PaymentData>>({});
 
+  
+  
   useEffect(() => {
     const login = localStorage.getItem('login');
     if (!login) {
@@ -118,6 +128,19 @@ const AlunoDashboard = () => {
       fetchAlunoData();
     }
   }, [router]);
+
+  useEffect(() => {
+    if (alunoData && alunoData.id) {
+      fetch(`/api/payments?aluno_id=${alunoData.id}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.paymentData) {
+            setPaymentStatuses({ [Number(alunoData.id)]: data.paymentData });
+          }
+        })
+        .catch(err => console.error("Erro ao carregar dados de pagamento:", err));
+    }
+  }, [alunoData]);
 
   const fetchRegisteredTreinos = async (
     alunoId: string,
@@ -332,20 +355,24 @@ const AlunoDashboard = () => {
     <div className={styles.dashboardContainer}>
       <h1 className={styles.headerTitle}>Painel do Aluno</h1>
 
-      {alunoData && (
-      <div className={styles.alunoInfo}>
-        <h2 className={styles.alunoName}>{alunoData.name}</h2>
-        {alunoData.photo_path && (
-        <Image
-          src={alunoData.photo_path}
-          alt={`${alunoData.name}`}
-          width={150} // Ajuste conforme necessário
-          height={150} // Ajuste conforme necessário
-          className={styles.alunoPhoto}
-        />
-      )}
-      </div>
-    )}
+        {alunoData && (
+          <div className={styles.alunoInfo}>
+            <h2 className={styles.alunoName}>{alunoData.name}</h2>
+            {alunoData.photo_path && (
+              <Image
+                src={alunoData.photo_path}
+                alt={alunoData.name}
+                width={150}
+                height={150}
+                className={styles.alunoPhoto}
+              />
+            )}
+            <PaymentBell 
+              paymentData={paymentStatuses[Number(alunoData.id)]} 
+              currentMonth={getCurrentMonth()} 
+            />
+          </div>
+        )}
 
       {/* Cards for Treinos */}
       <div className={styles.cardsContainer}>

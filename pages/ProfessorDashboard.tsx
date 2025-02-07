@@ -4,14 +4,16 @@ import styles from '../styles/Professor.module.css';
 import ImageUploader from '../components/ImageUploader';
 import { FaBell } from 'react-icons/fa';
 import Image from 'next/image';
+import PaymentModal, { PaymentData } from '../components/PaymentModal';
+
+
 interface Professor {
   id: number;
   name: string;
   login: string;
-  roles: string[]; 
+  roles: string[];
 }
 
-// Definição dos tipos usados no componente
 interface Aluno {
   id: number;
   name: string;
@@ -20,7 +22,7 @@ interface Aluno {
   birth_date?: string;
   email?: string;
   telefone?: string;
-  photo_url?: string; 
+  photo_url?: string;
 }
 
 interface Exercise {
@@ -30,9 +32,9 @@ interface Exercise {
 }
 
 interface Treino {
-  id: number; 
+  id: number;
   tipo: string;
-  descricao: string; // Adiciona a descrição que contém o tipo do treino
+  descricao: string;
   exercicios: Exercise[];
 }
 
@@ -57,49 +59,41 @@ interface ExercicioCategorias {
   [categoria: string]: string[] | Record<string, string[]>;
 }
 
-
+// Definindo o tipo para o status de pagamento
+export type PaymentStatus = Record<string, boolean>;
 
 // Função para buscar alunos da API
 const fetchAlunos = async (): Promise<Aluno[]> => {
   const token = localStorage.getItem('token');
   const response = await fetch('/api/alunos', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    headers: { Authorization: `Bearer ${token}` },
   });
-
   if (!response.ok) {
     throw new Error('Erro ao buscar alunos');
   }
-
   const data = await response.json();
-
-  // Assegurar que o ID seja um número e retornar a URL da foto
   return data.map((aluno: any) => ({
     ...aluno,
     id: Number(aluno.id),
-    photo_url: aluno.photo_url || 'default-photo-url.jpg', // URL da foto ou padrão
+    photo_url: aluno.photo_url || 'default-photo-url.jpg',
   }));
 };
 
 // Função para buscar treinos de um aluno da API
 const fetchTreinos = async (aluno_id: number): Promise<Treino[]> => {
-  console.log('Buscando treinos para aluno:', aluno_id); // Adiciona um log para verificar o aluno_id
+  console.log('Buscando treinos para aluno:', aluno_id);
   const response = await fetch(`/api/treinos?aluno_id=${aluno_id}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   });
-
   if (!response.ok) {
     console.error('Erro ao buscar treinos:', response.statusText);
     throw new Error('Erro ao buscar treinos');
   }
-
   const data: Treino[] = await response.json();
-  console.log('Treinos recebidos:', data); // Log para verificar os dados recebidos
+  console.log('Treinos recebidos:', data);
   return data;
 };
+
 
 
 const ProfessorDashboard: React.FC = () => {
@@ -238,7 +232,6 @@ const ProfessorDashboard: React.FC = () => {
   
     fetchProfessor();
   }, []);
-  
   
 
   // Função para buscar os cards criados
@@ -479,6 +472,33 @@ const ProfessorDashboard: React.FC = () => {
   
   const [currentPageAlunos, setCurrentPageAlunos] = useState(1);
   const alunosPorPagina = 5; // Quantos alunos serão exibidos por página
+  const [showPaymentModal, setShowPaymentModal] = useState<boolean>(false);
+  const [selectedAlunoForPayment, setSelectedAlunoForPayment] = useState<Aluno | null>(null);
+  const [paymentStatuses, setPaymentStatuses] = useState<Record<number, PaymentData>>({});
+
+
+   // Função para obter o mês atual no formato "YYYY-MM"
+   const getCurrentMonth = (): string => {
+    const today = new Date();
+    return `${today.getFullYear()}-${('0' + (today.getMonth() + 1)).slice(-2)}`;
+  };
+  // Função que escolhe o ícone com base no status do mês atual
+  const getPaymentIcon = (data: PaymentData | undefined, currentMonth: string): string => {
+    const today = new Date();
+    if (!data || !data.dueDay) {
+      return "ℹ️"; // Informação faltando
+    }
+    if (data.history[currentMonth] === true) {
+      return "✅"; // Pago
+    } else {
+      if (today.getDate() > data.dueDay) {
+        return "❗"; // Atrasado
+      }
+      return "💰"; // Ainda não vencido
+    }
+  };
+  
+  
   
    // Paginação após o filtro
    const indexOfLastAluno = currentPageAlunos * alunosPorPagina;
@@ -709,6 +729,29 @@ const ProfessorDashboard: React.FC = () => {
     loadAlunos();
   }, []);
 
+  useEffect(() => {
+    // Função para carregar os dados de pagamento para todos os alunos
+    const loadPaymentStatuses = async () => {
+      const statuses: Record<number, PaymentData> = {};
+      for (const aluno of alunos) {
+        try {
+          const res = await fetch(`/api/payments?aluno_id=${aluno.id}`);
+          const data = await res.json();
+          if (data.paymentData) {
+            statuses[aluno.id] = data.paymentData;
+          }
+        } catch (error) {
+          console.error(`Erro ao carregar status de pagamento para o aluno ${aluno.id}:`, error);
+        }
+      }
+      setPaymentStatuses(statuses);
+    };
+  
+    if (alunos.length > 0) {
+      loadPaymentStatuses();
+    }
+  }, [alunos]);
+  
   const handleDeleteTreino = async (treinoId: number) => {
     const confirmDelete = confirm('Tem certeza que deseja excluir este treino?');
     if (!confirmDelete) return;
@@ -907,7 +950,8 @@ const ProfessorDashboard: React.FC = () => {
     });
   };
   
-  
+
+
 
   const handleAlterarDadosSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1239,34 +1283,79 @@ const ProfessorDashboard: React.FC = () => {
                   <th>Nome do Aluno</th>
                   <th>Login</th>
                   <th>Dados</th>
+                  <th>Pagamento</th>
                   <th>Ações</th>
                 </tr>
               </thead>
-              <tbody>
-                {currentAlunos.length > 0 ? (
-                  currentAlunos.map((aluno) => (
-                    <tr key={aluno.id}>
-                      <td>{aluno.name}</td>
-                      <td>{aluno.login}</td>
-                      <td className={styles.status} onClick={() => handleAlterarDadosAluno(aluno)}>
-                        {verificarDadosCompletos(aluno) ? '✅' : '❗'}
-                      </td>
-                      <td>
-                      <div className={styles.actionButtons}>
-                        <button onClick={() => handleViewTreinos(aluno)}>Ver Treinos</button>
-                        <button onClick={() => handleDeleteAluno(aluno)} className={styles.deleteButton}>
-                          Excluir
-                        </button>
-                      </div>
-                    </td>
+                <tbody>
+                  {currentAlunos.length > 0 ? (
+                    currentAlunos.map((aluno) => (
+                      <tr key={aluno.id}>
+                        <td>{aluno.name}</td>
+                        <td>{aluno.login}</td>
+                        <td className={styles.status} onClick={() => handleAlterarDadosAluno(aluno)}>
+                          {verificarDadosCompletos(aluno) ? '✅' : '❗'}
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => {
+                              setSelectedAlunoForPayment(aluno);
+                              setShowPaymentModal(true);
+                            }}
+                            title="Atualizar Pagamento"
+                            className={styles.paymentIconButton}
+                          >
+                            {getPaymentIcon(paymentStatuses[aluno.id], getCurrentMonth())}
+                          </button>
+                        </td>
+                        <td>
+                          <div className={styles.actionButtons}>
+                            <button onClick={() => handleViewTreinos(aluno)}>Ver Treinos</button>
+                            <button onClick={() => handleDeleteAluno(aluno)} className={styles.deleteButton}>
+                              Excluir
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={5}>Nenhum aluno encontrado</td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={4}>Nenhum aluno encontrado</td>
-                  </tr>
+                  )}
+                </tbody>
+
+                {showPaymentModal && selectedAlunoForPayment && (
+                  <PaymentModal
+                    isOpen={showPaymentModal}
+                    onClose={() => setShowPaymentModal(false)}
+                    studentId={selectedAlunoForPayment.id}
+                    initialPaymentData={paymentStatuses[selectedAlunoForPayment.id] || undefined}
+                    onSave={async (alunoId: number, paymentData: PaymentData) => {
+                      console.log('Dados recebidos no onSave (Dashboard):', alunoId, paymentData);
+                      try {
+                        const response = await fetch('/api/payments', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ aluno_id: alunoId, paymentData }),
+                        });
+                        if (!response.ok) {
+                          throw new Error('Erro ao atualizar status de pagamento.');
+                        }
+                        // Atualiza o estado local para que a interface reflita os dados salvos
+                        setPaymentStatuses(prev => ({ ...prev, [alunoId]: paymentData }));
+                        alert('Status de pagamento atualizado com sucesso!');
+                      } catch (error) {
+                        console.error(error);
+                        alert('Erro ao atualizar status de pagamento.');
+                      }
+                      setShowPaymentModal(false);
+                    }}
+                    
+                  />
                 )}
-              </tbody>
+
+
             </table>
 
             {/* Paginação */}
