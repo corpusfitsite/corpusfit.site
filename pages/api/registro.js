@@ -1,39 +1,49 @@
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
+// pages/api/registro.js
+import db from '../../lib/db';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ erro: 'Método não permitido' });
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { nome, email, senha, idade, peso, altura } = req.body;
+  const {
+    name,
+    login,
+    password,
+    role = 'aluno',       // valor padrão, ajuste se quiser
+    birth_date = null,
+    cpf = null,
+    email = null,
+    telefone = null,
+    photo_path = null
+  } = req.body;
 
-  if (!nome || !email || !senha) {
-    return res.status(400).json({ erro: 'Nome, email e senha são obrigatórios' });
-  }
-
-  try {
-    const db = await open({
-      filename: './database.sqlite',
-      driver: sqlite3.Database,
+  // Função helper para rodar db.run com Promise
+  const runAsync = (sql, params) =>
+    new Promise((resolve, reject) => {
+      db.run(sql, params, function (err) {
+        if (err) return reject(err);
+        // this.lastID é o ID da linha inserida
+        resolve({ id: this.lastID });
+      });
     });
 
-    // Verifica se o email já está cadastrado
-    const existente = await db.get('SELECT * FROM alunos WHERE email = ?', [email]);
-    if (existente) {
-      return res.status(409).json({ erro: 'Email já cadastrado' });
-    }
-
-    // Insere o novo aluno com aprovado = false
-    await db.run(
-      `INSERT INTO alunos (nome, email, senha, idade, peso, altura, aprovado)
-       VALUES (?, ?, ?, ?, ?, ?, 0)`,
-      [nome, email, senha, idade, peso, altura]
+  try {
+    const { id } = await runAsync(
+      `INSERT INTO users
+        (name, login, password, role, birth_date, cpf, email, telefone, photo_path)
+       VALUES (?,?,?,?,?,?,?,?,?)`,
+      [name, login, password, role, birth_date, cpf, email, telefone, photo_path]
     );
 
-    res.status(201).json({ mensagem: 'Cadastro enviado para aprovação do professor' });
-  } catch (erro) {
-    console.error(erro);
-    res.status(500).json({ erro: 'Erro interno no servidor' });
+    return res.status(201).json({ id });
+  } catch (err) {
+    console.error('Erro no registro:', err);
+    // Se for violação de UNIQUE (login repetido), sqlite retorna err.code === 'SQLITE_CONSTRAINT'
+    if (err.code === 'SQLITE_CONSTRAINT') {
+      return res.status(409).json({ error: 'Login já existe' });
+    }
+    return res.status(500).json({ error: err.message });
   }
 }
