@@ -83,12 +83,29 @@ const handler = async (req, res) => {
         console.error('Erro ao verificar login:', err);
         res.status(500).json({ error: 'Erro ao verificar login' });
       }
+
+    } else if (req.query.status === 'pendentes') {
+        try {
+          const rows = await new Promise((resolve, reject) => {
+            db.all('SELECT * FROM users WHERE role = "aluno" AND aprovado = 0', [], (err, rows) => {
+              if (err) reject(err);
+              else resolve(rows);
+            });
+          });
+          const alunos = rows.map(({ password, ...aluno }) => aluno);
+          res.status(200).json(alunos || []);
+        } catch (err) {
+          console.error('Erro ao buscar alunos pendentes:', err);
+          res.status(500).json({ error: 'Erro ao buscar alunos pendentes' });
+        }
+
     } else if (login) {
       try {
         const aluno = await dbGet('SELECT * FROM users WHERE login = ?', [login]);
         if (!aluno) {
           return res.status(404).json({ error: 'Aluno não encontrado' });
         }
+        
 
         const foto = await dbGet('SELECT photo_path FROM photos WHERE aluno_id = ?', [aluno.id]);
         const treinos = await new Promise((resolve, reject) => {
@@ -138,6 +155,8 @@ const handler = async (req, res) => {
       const { name, login, password, birth_date, cpf, email, telefone } = fields;
       const alunoName = name && name[0];  // Acessando o primeiro valor do array 'name'
       const alunoLogin = login && login[0];  // Acessando o primeiro valor do array 'login'
+      const criadoPorProfessor = fields.criadoPorProfessor?.[0] === 'true';
+      const aprovado = criadoPorProfessor ? 1 : 0;
 
       // Verificar se os campos obrigatórios estão presentes
       if (!alunoName || !alunoLogin || !password) {
@@ -173,7 +192,7 @@ const handler = async (req, res) => {
 
       // Inserir o novo aluno no banco de dados
       const result = await dbRun(
-        'INSERT INTO users (name, login, password, role, birth_date, cpf, email, telefone, photo_path) VALUES (?, ?, ?, "aluno", ?, ?, ?, ?, ?)',
+        'INSERT INTO users (name, login, password, role, birth_date, cpf, email, telefone, photo_path,aprovado) VALUES  (?, ?, ?, "aluno", ?, ?, ?, ?, ?, ?)',
         [
           alunoName,  // Acessando o valor correto
           alunoLogin, // Acessando o valor correto
@@ -183,6 +202,7 @@ const handler = async (req, res) => {
           email || null, 
           telefone || null, 
           photoPath, 
+          aprovado
         ]
       );
 
@@ -211,7 +231,7 @@ const handler = async (req, res) => {
 
       if (contentType.includes('application/json')) {
         // Parse JSON
-        const body = await new Promise<string>((resolve, reject) => {
+        const body = await new Promise((resolve, reject) => {
           let data = '';
           req.on('data', chunk => {
             data += chunk;
@@ -278,6 +298,18 @@ const handler = async (req, res) => {
         }
         fieldsToUpdate.push('telefone = ?');
         values.push(telefone);
+      }
+
+      if (req.query.aprovar === 'true') {
+        const upd = await dbRun('UPDATE users SET aprovado = 1 WHERE id = ?', [req.query.id]);
+        return res.status(200).json({
+          message: upd.changes ? 'Aluno aprovado com sucesso' : 'Aluno não encontrado'
+        });
+      }
+
+       if (updatedData.aprovado !== undefined) {
+        fieldsToUpdate.push('aprovado = ?');
+        values.push(updatedData.aprovado === 'true' || updatedData.aprovado === true ? 1 : 0);
       }
 
       // Atualizar o aluno no banco de dados

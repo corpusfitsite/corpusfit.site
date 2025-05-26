@@ -50,13 +50,12 @@ const Header: React.FC = () => {
         </div>
 
         <div className="login-options">
-          {isLoggedIn ? (
-            <button className="logoutButton" onClick={handleLogout}>Logout</button>
-          ) : (
-            <>
-              <button className="loginAluno" onClick={() => handleNavigation('/login')}>Logar</button>
-            </>
-          )}
+          {!isLoggedIn && (
+              <>
+                <button className="loginAluno" onClick={() => handleNavigation('/login')}>Logar</button>
+                <button className="criarConta" onClick={() => handleNavigation('/cadastro-aluno')}>Criar Conta</button>
+              </>
+            )}
         </div>
         <div className="menu-icon" onClick={toggleSidebar}>
           &#9776;

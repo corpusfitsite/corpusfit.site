@@ -14,6 +14,13 @@ const handler = (req, res) => {
       return res.status(401).json({ error: 'Credenciais inválidas' });
     }
 
+     // ↧ bloquear login de aluno não aprovado
+     if (user.role === 'aluno' && user.aprovado === 0) {
+      return res.status(403).json({ error: 'Conta aguardando aprovação do professor.' });
+      }
+
+
+
     // Verificar a senha usando bcrypt
     bcrypt.compare(password, user.password, (err, result) => {
       if (err) {
