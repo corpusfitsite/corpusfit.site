@@ -97,6 +97,90 @@
   font-size: 1rem;
 }
 
+/* Alunos Pendentes */
+
+.pendentesContainer {
+  border: 2px solid #ffcc00;
+  padding: 16px;
+  margin-top: 20px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background-color: #273142;
+  overflow-x: auto;
+}
+
+/* .pendentesTable {
+  width: 100%;
+  border-collapse: collapse;
+} */
+
+
+.pendentesTable th,
+.pendentesTable td {
+  padding: 0px 6px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.pendentesTable th:nth-child(1),
+.pendentesTable td:nth-child(1) {
+  min-width: 200px;
+}
+
+.pendentesTable th:nth-child(2),
+.pendentesTable td:nth-child(2) {
+  min-width: 250px; 
+}
+
+.pendenteRow {
+  background-color: #364764;
+}
+
+.pendenteRow:nth-child(even) {
+  background-color: #273142;
+}
+
+.aprovarBtn {
+  background-color: #28a745;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.aprovarBtn:hover {
+  background-color: #218838;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 35px;
+}
+
+.paginationButton {
+  margin: 0 8px;
+  padding: 6px 12px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.paginationButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.paginationInfo {
+  margin: 0 8px;
+}
+
+
 /* Botão de adicionar aluno */
 .addButton {
   background-color: #0070f3;

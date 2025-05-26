@@ -101,6 +101,20 @@ p {
   z-index: 1002;
 }
 
+.criarConta{
+  position: absolute;
+  display: flex;
+  left: -149%;
+  padding: 3px 5px;
+  font-size: medium;
+  font-size: small;
+  font-weight: 700;
+  /* transition: background 0.3s, transform 0.2s; */
+}
+.criarConta:hover {
+  background-color: #0e1ac4;
+  transform: scale(1.02);
+} 
 
 
 
