@@ -461,6 +461,12 @@ const Administrador: React.FC = () => {
     setTreinos([]);
     setTreinoError(null);
 
+    // Lógica para Raiane Luna Rodrigues da Silva
+    if (aluno.name === "Rayanne Luma Rodrigues da Silva") {
+      setTreinoError("Teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês.");
+      return;
+    }
+
     try {
       const treinosData = await fetchTreinos(aluno.id);
       if (treinosData.length === 0) {
