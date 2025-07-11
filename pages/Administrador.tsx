@@ -463,7 +463,6 @@ const Administrador: React.FC = () => {
 
     if (aluno.name === "Rayanne Luma Rodrigues da Silva") {
       setTreinoError(
-        <>
           Matrícula da 03-03-24<br/>
           Ativo 03-04-24<br/>
           Ativo 03-05-24<br/>
@@ -481,7 +480,6 @@ const Administrador: React.FC = () => {
           Ativo sem frequência 04-2025, mensalidade em aberto<br/>
           Ativo sem frequência 05-2025, mensalidade em aberto<br/>
           Ativo sem frequência 06-2024, mensalidade em aberto
-        </>
       );
       return;
     }
