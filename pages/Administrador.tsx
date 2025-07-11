@@ -723,7 +723,7 @@ const Administrador: React.FC = () => {
     {/* Mensagem de Boas-Vindas */}
     <div className={styles.welcomeMessageContainer}>
       <h1 className={styles.welcomeMessage}>
-        A aluna <span className={styles.nomeAlunaDestaque}>Ana Clara</span> teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês
+        A aluna <span className={styles.nomeAlunaDestaque}>Raiane Luna Rodrigues da Silva</span> teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês
       </h1>
     </div>
 
