@@ -461,25 +461,25 @@ const Administrador: React.FC = () => {
     setTreinos([]);
     setTreinoError(null);
 
-    if (aluno.name === "Rayanne Luma Rodrigues da Silva") {
+    if (aluno.name === "nne Luma Rodrigues da Silva") {
       setTreinoError(
-          Matrícula da 03-03-24<br/>
-          Ativo 03-04-24<br/>
-          Ativo 03-05-24<br/>
-          Junho 2024 aluno afastado<br/>
-          Julho 2024 aluno afastado<br/>
-          Agosto 2024 aluno afastado<br/>
-          Setembro 2024 aluno afastado<br/>
-          Outubro 2024 aluno afastado<br/>
-          Novembro 2024 aluno afastado<br/>
-          Dezembro 2024 aluno afastado<br/>
-          Janeiro 2025 aluno afastado<br/>
-          Matrícula 02-2025<br/>
-          Ativo 03-2025<br/>
-          Ativo sem frequência 04-2025, mensalidade em aberto<br/>
-          Ativo sem frequência 04-2025, mensalidade em aberto<br/>
-          Ativo sem frequência 05-2025, mensalidade em aberto<br/>
-          Ativo sem frequência 06-2024, mensalidade em aberto
+          "Matrícula da 03-03-24
+          Ativo 03-04-24
+          Ativo 03-05-24
+          Junho 2024 aluno afastado
+          Julho 2024 aluno afastado
+          Agosto 2024 aluno afastado
+          Setembro 2024 aluno afastado
+          Outubro 2024 aluno afastado
+          Novembro 2024 aluno afastado
+          Dezembro 2024 aluno afastado
+          Janeiro 2025 aluno afastado
+          Matrícula 02-2025
+          Ativo 03-2025
+          Ativo sem frequência 04-2025, mensalidade em aberto
+          Ativo sem frequência 04-2025, mensalidade em aberto
+          Ativo sem frequência 05-2025, mensalidade em aberto
+          Ativo sem frequência 06-2024, mensalidade em aberto"
       );
       return;
     }
