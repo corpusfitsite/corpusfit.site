@@ -1,1006 +1,694 @@
-/* Estilos para o container geral */
-
-
-.dashboardContainer {
-  padding: 20px;
-  background-color: #1b2431; /* Fundo escuro */
-  color: white;
-  min-height: 100vh;
-  width: 100%;
-  height: 100vh;
-  box-sizing: border-box;
-  position: fixed;
-  margin-top: 0;  /* Remover o margin-top em telas menores */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  overflow: auto;
-  top: 7%;
-  max-width: 100%;
-  overflow-x: hidden; 
-}
-
-/* Título do painel */
-.dashboardTitle {
-  font-size: 2.5rem;
-  font-family: 'Bebas Neue', sans-serif;
-  color: #00ff00; /* Verde neônico */
-  text-align: center;
-  margin-bottom: 40px;
-  width: 100%; /* Garantir que ocupe toda a largura */
-  top: 8px;
-  position: relative;
-}
-
-/* Estilos para o botão de logout */
-.logoutButton {
-  background-color: #dc3545;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: absolute;
-  top: 10px; /* Ajustar para telas menores */
-  left: 11px; /* Ajustar para telas menores */
-}
-
-.logoutButton:hover {
-  background-color: #c82333;
-}
-
-/* Botão de adicionar aluno */
-.addButton {
-  background-color: #0070f3;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
-}
-
-.addButton:hover {
-  background-color: #005bb5;
-}
-
-.cardImage {
-  width: 80px;
-  height: auto;
-  border-radius: 5px;
-  object-fit: cover; /* Garantir que a imagem fique bem enquadrada */
-}
-
-/* Estilos para o formulário de adicionar aluno */
-.addAlunoForm {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  background-color: #313d4f;
-  padding: 20px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 500px;
-}
-
-.inputField {
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f4f4f4;
-}
-
-.submitButton {
-  text-decoration: none;
-  color: #fff;
-  background-color: rgb(34 34 34);
-  font-size: 27px;
-  border-radius: 12px;
-  border-width: thick;
-  border-color: rgb(2 2 2);
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.submitButton:hover {
-  background-color: #218838;
-}
-
-.deleteButton {
-  border-color: rgba(136, 16, 16, 0.65);
-  background-color: rgba(106, 43, 43, 0.65);
-  font-size: 18px;
-}
-
-.deleteButton:hover {
-  background-color: #218838;
-}
-
-.cancelButton {
-  background-color: #dc3545;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.cancelButton:hover {
-  background-color: #c82333;
-}
-
-/* Estilos principais da tabela */
-.projectsInner {
-  margin-top: 40px;
-  width: 100%;
-  max-width: 1000px;
-}
-
-.projectsHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 2px solid #313d4f;
-}
-
-.projectsHeader .title {
-  font-size: 24px;
-  font-family: 'Bebas Neue', sans-serif;
-}
-
-.projectsHeader .count {
-  font-size: 18px;
-  color: #a5a5a5;
-}
-
-.projectsTable {
-  width: 100%;
-  background-color: #273142;
-  margin-top: 20px;
-  max-width: 100%;
-  table-layout: fixed;
-  word-wrap: break-word;
-}
-
-.projectsTable th {
-  background-color: #313d4f;
-  text-align: left;
-  color: white;
-}
-
-.projectsTable td {
-  vertical-align: middle;
-  color: white;
-  border-bottom: 1px solid #313d4f;
-}
-
-
-.projectsTable th,
-.projectsTable td{
-  font-family: monospace
-
-}
-
-.projectsTable tr:hover {
-  background-color: #202b3a;
-}
-
-.projectsTable .status {
-  text-align: center;
-}
-
-.projectsTable .statusText {
-  font-size: 12px;
-  color: #66B92E; /* Verde para indicar ativo */
-}
-
-/* Botões de ações */
-.projectsTable .actionButtons {
-  display: flex;
-  gap: 10px;
-}
-
-.actionButtons button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: medium;
-  font-family: system-ui;
-  font-weight: 400;
-  background-color: #3d4653;
-}
-
-.actionButtons button:hover {
-  background-color: #0056b3;
-}
-
-.treinosContainer {
-  margin-top: 20px;
-  background-color: #1b2431;
-  padding: 20px;
-  border-radius: 8px;
-  color: white;
-}
-
-.treinosContainer h3 {
-  font-size: 1.8rem;
-  color: #00ff00;
-  font-family: 'Bebas Neue', sans-serif;
-}
-
-.listaTreinos {
-  list-style: none;
-  padding: 0;
-}
-
-.itemTreino {
-  margin-bottom: 20px;
-  background-color: #202b3a;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.itemTreino h4 {
-  font-size: 1.4rem;
-  color: #66B92E;
-}
-  
-/* Estilos para o modal de criação de treino */
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #1b2431;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 2000;
-}
-
-.modal h3 {
-  margin-top: 0;
-  color: #00ff00;
-  font-family: 'Bebas Neue', sans-serif;
-  text-align: center;
-}
-
-.modal label {
-  color: #ffffff;
-  margin-bottom: 5px;
-}
-
-.modal .inputField,
-.modal select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: none;
-  border-radius: 4px;
-  background-color: #313d4f;
-  color: #ffffff;
-}
-
-.modal .inputField::placeholder {
-  color: #aaa;
-}
-
-/* Container dos Exercícios */
-.exerciseContainer {
-  flex: 1;
-  overflow-y: auto;
-  margin-bottom: 15px;
-  padding-right: 5px;
-}
-
-.exerciseItem {
-  background-color: #273142;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-
-.exerciseItem label {
-  color: #ffffff;
-}
-
-.exerciseItem select {
-  margin-bottom: 10px;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  background-color: #313d4f;
-  color: #ffffff;
-}
-
-/* Botões de Ação no Modal */
-.modalActions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.modalActions button {
-  flex: 1;
-  margin: 5px;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-.modalActions button:nth-child(1) {
-  background-color: #007bff;
-  color: #ffffff;
-}
-
-.modalActions button:nth-child(1):hover {
-  background-color: #0056b3;
-}
-
-.modalActions button:nth-child(2) {
-  background-color: #28a745;
-  color: #ffffff;
-}
-
-.modalActions button:nth-child(2):hover {
-  background-color: #218838;
-}
-
-.modalActions button:nth-child(3) {
-  background-color: #6c757d;
-  color: #ffffff;
-}
-
-.modalActions button:nth-child(3):hover {
-  background-color: #5a6268;
-}
-
-/* Botão "Criar Treino" */
-.createTreinoButton {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.createTreinoButton:hover {
-  background-color: #218838;
-}
-
-.formContainer,
-.formContainer form  {
-  position: relative;
-  background-color: rgb(0, 0, 0);
-  padding: 20px;
-  border-radius: 8px;
-  background-color: rgb(61 60 62);
-  z-index: 0;
-}
-
-.formContainer{
-  margin-top: 1%;
-}
-
-.formContainer label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-.formContainer input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.formContainer button {
-  background-color: #f2f2f2;
-  color: rgb(0, 0, 0);
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.formContainer button:hover {
-  background-color: #56b30a;
-}
-
-
-
-  /* Card de treino */
-.treinoCard {
-  background-color: #273142;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-}
-
-.treinoCard h4 {
-  margin-top: 0;
-  font-size: 1.2em;
-  color: #00ff00;
-}
-
-.treinoCard ul {
-  list-style: none;
-  padding: 0;
-}
-
-.treinoCard li {
-  padding: 5px 0;
-  border-bottom: 1px solid #313d4f;
-}
-
-.treinoCard li:last-child {
-  border-bottom: none;
-}
-
-/* Botões especiais */
-
-
-
-/* Estilo para os botões no modal */
-.modal button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.modal button:hover {
-  background-color: #0056b3;
-}
-
-.modal .addExerciseButton {
-  margin-top: 15px;
-  background-color: #28a745;
-}
-
-.modal .addExerciseButton:hover {
-  background-color: #218838;
-}
-
-
-.footer {
-  background-color: #1b2431; /* Cor de fundo igual à página */
-  color: white;
-  padding: 20px;
-  text-align: center;
-  width: 100%;
-  position: relative;  /* Garantir que ele fique no final da página */
-  margin-top: 40px;   /* Espaçamento superior para separá-lo do conteúdo */
-}
-
-.footer p {
-  margin: 0;
-  font-size: 14px;
-}
-  
-  /* Estilos para o botão de toggle ON/OFF */
-.toggle {
-    position: relative;
-    width: 60px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-.toggleCheckbox {
-  display: none; /* Esconde o checkbox */
-}
-
-.toggleLabel {
-  width: 100%;
-  height: 100%;
-  background: #f44336; /* Cor quando OFF */
-  border-radius: 50px;
-  position: relative;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.toggleCheckbox:checked + .toggleLabel {
-  background: #4caf50; /* Cor quando ON */
-}
-
-.thumb {
-  width: 26px;
-  height: 26px;
-  background: #ffffff; /* Cor da "bolinha" */
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: left 0.3s ease;
-}
-
-.toggleCheckbox:checked + .toggleLabel .thumb {
-  left: calc(100% - 28px); /* Move a bolinha para a direita quando ON */
-}
-
-.actionButtons .toggle {
-  margin: 0 10px; /* Adiciona espaçamento ao redor do botão se necessário */
-}
-
-.paginationButton {
-  padding: 2px 1px;
-  border-color: rgba(34, 34, 41, 0.65);
-  background-color: rgba(92, 87, 111, 0.65);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Botão "Criar Treino" */
-.createTreinoButton {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.createTreinoButton:hover {
-  background-color: #218838;
-}
-
-.searchInput {
-  padding: 8px;
-  font-size: 1rem;
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-}
-
-/* suggestions */
-.suggestionsContainer {
-  margin-top: 5px;
-  background-color:#4b4b4b;;
-  border: 1px solid #252525;;
-  border-radius: 4px;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 100;
-  position: absolute;
-  /* background-color: red; */
-  /* display: none; */
-}
-
-.suggestionsContainer.active {
-  display: block;
-}
-
-.suggestionItem {
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  color: black;
-  font-weight: 600;
-  font-family: system-ui;
-}
-.suggestionItem:hover {
-  background-color: #f0f0f0;
-}
-
-/* Estilos para notificações */
-.notification {
-  background-color: #f4f4f9;
-  border-left: 4px solid #007bff;
-  border-radius: 6px;
-  padding: 16px;
-  margin-bottom: 20px;
-  color: #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.notification h3 {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.notification ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.notification li {
-  padding: 6px 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.notification li:hover {
-  background-color: #e3e8f1;
-  border-radius: 4px;
-}
-
-.notification li::before {
-  content: '🎂';
-  margin-right: 8px;
-}
-
-/* Estilos para o conteúdo do modal */
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modalContent {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 20000;
-}
-
-.modalContent h2 {
-  font-size: 1.5em;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #555;
-}
-
-.modalContent p {
-  margin: 8px 0;
-  font-size: 1em;
-  color: #555;
-}
-
-.modalContent button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.2em;
-  color: #aaa;
-  cursor: pointer;
-}
-
-.modalContent button:hover {
-  color: #333;
-}
-
-.headerIcons {
-  display: flex;
-  align-items: center;
-}
-
-/* Estilos para o ícone de notificação no header */
-.notificationIcon {
-  position: absolute;
-  top: 19px;
-  right: 47px;
-  cursor: pointer;
-}
-
-.bellIcon {
-  font-size: 1.5em;
-  color: #ffffff;
-}
-
-.notificationBadge {
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  background-color: #ff4d4f;
-  color: white;
-  border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 0.75em;
-  font-weight: bold;
-}
-
-
-/* Estilos para o dropdown de notificações */
-.notificationDropdown {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color: white;
-  width: 300px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-}
-
-.notificationDropdown::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  right: 30px;
-  border-width: 0 10px 10px;
-  border-style: solid;
-  border-color: transparent transparent #fff;
-}
-
-.notificationDropdown h3 {
-  margin: 0;
-  padding: 12px;
-  border-bottom: 1px solid #f0f0f0;
-  font-size: 1em;
-  color: #333;
-}
-
-.notificationDropdown ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.notificationDropdown li {
-  padding: 10px 12px;
-  cursor: pointer;
-  font-size: 0.9em;
-  color: #555;
-}
-
-.notificationDropdown li:hover {
-  background-color: #f5f5f5;
-}
-
-/* Estilo para a numeração dos treinos */
-.treinoNumero {
-  font-weight: bold;
-  color: #00ff00; /* Verde neônico para destacar */
-  margin-right: 5px;
-}
-
-
-@media (min-width: 1110px) {
-  .projectsTable th, 
-  .projectsTable td{
-    padding: 15px;
-  }
-  
-
-}
-/* Estilos responsivos para telas menores */
-@media (max-width: 768px) {
-
-
-  .paginationButton {
-    margin-right: 12px;
-    
-  }
-  .dashboardContainer {
-    padding: 10px;
-    min-height: 100vh;
-    height: 100vh;
-  }
-
-  .dashboardTitle {
-    font-size: 2rem;
-    top: 10px;
-    
-  }
-
-  .projectsTable th,
-  .projectsTable td {
-    font-size: 11px;
-  }
-
-  .projectsTable {
-    min-height: 51%;
-  }
-
-  .modal {
-    width: 90%;
-  }
-}
-
-@media (max-width: 576px) {
-  .toggle {
-    width: 50px;
-    height: 25px;
-  }
-  
-  .thumb {
-    width: 22px;
-    height: 22px;
-  }
-
-  .toggleCheckbox:checked + .toggleLabel .thumb {
-    left: calc(100% - 28px); /* Move a bolinha para a direita quando ON */
-  }
-
-  .dashboardContainer {
-    padding: 10px;
-    min-height: 100vh;
-    height: 100vh;
-  }
-
-
-  .addButton {
-    padding: 8px 10px;
-  }
-
-  .projectsHeader .title {
-    font-size: 18px;
-  }
-
-  .projectsHeader .count {
-    font-size: 14px;
-  }
-
-  .modal {
-    width: 95%;
-  }
-
-  .modal h3 {
-    font-size: 1.5rem;
-  }
-
-  .deleteButton {
-    font-size: 12px;
-    margin-left: -5px;
-    font-weight: 900;
-  }
-
-  .treinoCard h4 {
-    font-size: 1rem;
-  }
-
-  .treinoCard li {
-    font-size: 0.8rem;
-  }
-
-  .dashboardTitle {
-    letter-spacing: 8px;
-  }
-  
-}
-
-.dashboardTitle {
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.arrow {
-  font-size: 1.5rem;
-  margin-left: 10px;
-}
-
-
-
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
-
-.paginationButton:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.paginationInfo {
-  font-size: 1rem;
-}
-
-
-@media (max-width: 430px) {
-  .dashboardContainer {
-    padding: 8px;
-    width: 100%;
-    height: 100vh;
-    min-height: 100vh;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: auto;
-  }
-
-  .projectsInner {
-    width: 103%;
-  }
-
-  .cardImage{
-    width: 56px;
-  }
-
-  .projectsTable {
-    font-size: 12px;
-  }
-
-  .logoutButton {
-    top: 5px;
-    left: 5px;
-  }
-
-  .dashboardTitle {
-    font-size: 1.4rem;
-    top: 14px;
-    letter-spacing: 7px;
-  }
-
- 
-
-  .modal {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .projectsTable .actionButtons {
-    display: grid;
-    gap: 11px;
-    left: -11%;
-    position: relative;
-
-  }
-
-  .actionButtons button{
-    /* padding: 2px 3px; */
-    font-size: small;
-    padding: 10px 6px;
-  }
-
-  .treinoCard h4 {
-    font-size: 1rem;
-  }
-
-  .treinoCard li {
-    font-size: 0.8rem;
-  }
-
-  .bellIcon{
-    font-size: 1.2em;
-  }
-
-  .notificationIcon{
-    right: 25px;
-  }
-}
-
-@media (max-height: 750px){
-  .dashboardContainer{
-    margin-top: 12px;
-  }
-}
+// Importações necessárias para o componente
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import styles from '../styles/Admin.module.css'; // Importa os estilos
+import { FaBell } from 'react-icons/fa'; // Ícone de sino para notificações
+
+// Definições de tipos (interfaces) para garantir segurança de tipo no TypeScript
+interface Aluno {
+  id: number;
+  name: string;
+  login: string;
+  status?: boolean; // Adicionar status ao Aluno
+  image?: string; // Adicionar campo para imagem
+  matricula_date?: string; // Adicionar data de matrícula
+  afastamento_date?: string; // Adicionar data de afastamento
+  dias_frequentados_mes_afastamento?: number; // Adicionar dias frequentados
+}
+
+interface Professor {
+  id: number;
+  name: string;
+  login: string;
+  status: boolean;
+}
+
+interface Exercicio {
+  id: number;
+  name: string;
+  series: number;
+  repetitions: number;
+}
+
+interface Treino {
+  id: number;
+  name: string;
+  exercicios: Exercicio[];
+  alunoId: number;
+  professorId: number;
+}
+
+const Administrador: React.FC = () => {
+  const router = useRouter(); // Hook do Next.js para roteamento
+  const [alunos, setAlunos] = useState<Aluno[]>([]); // Estado para armazenar a lista de alunos
+  const [newAluno, setNewAluno] = useState({ name: '', login: '' }); // Estado para o formulário de novo aluno
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para o termo de busca de alunos
+  const [currentPage, setCurrentPage] = useState(1); // Estado para a paginação
+  const [professores, setProfessores] = useState<Professor[]>([]); // Estado para armazenar a lista de professores
+  const [isCheckedMap, setIsCheckedMap] = useState<{ [key: string]: boolean }>({}); // Controla o estado de cada botão ON/OFF por professor
+  const [selectedAluno, setSelectedAluno] = useState<Aluno | null>(null); // Estado para o aluno selecionado (para ver treinos)
+  const [alunoMensagem, setAlunoMensagem] = useState<Aluno | null>(null); // Manter para a mensagem principal, se ainda for usar
+  const [matriculaDate, setMatriculaDate] = useState<string | null>(null); // Manter para a mensagem principal, se ainda for usar
+  const [afastamentoInfo, setAfastamentoInfo] = useState<{ date: string; days: number } | null>(null); // Manter para a mensagem principal, se ainda for usar
+  const [treinos, setTreinos] = useState<Treino[]>([]); // Estado para armazenar os treinos do aluno selecionado
+  const [treinoError, setTreinoError] = useState<string | null>(null); // Estado para erros ao carregar treinos
+  const [showAddAluno, setShowAddAluno] = useState(false); // Estado para controlar a visibilidade do formulário de adicionar aluno
+  const [showAddProfessor, setShowAddProfessor] = useState(false); // Estado para controlar a visibilidade do formulário de adicionar professor
+  const [showCreateTreinoModal, setShowCreateTreinoModal] = useState(false); // Estado para controlar a visibilidade do modal de criação de treino
+  const [newTreinoName, setNewTreinoName] = useState(''); // Nome do novo treino
+  const [newExercicios, setNewExercicios] = useState<Exercicio[]>([{ id: 0, name: '', series: 0, repetitions: 0 }]); // Exercícios do novo treino
+  const [selectedProfessorId, setSelectedProfessorId] = useState<number | null>(null); // ID do professor selecionado para o treino
+  const [aniversariantes, setAniversariantes] = useState<string[]>([]); // Lista de aniversariantes
+  const [showNotifications, setShowNotifications] = useState(false); // Visibilidade do dropdown de notificações
+
+  const itemsPerPage = 5; // Quantidade de itens por página na tabela de alunos
+
+  // Efeito para carregar dados ao montar o componente
+  useEffect(() => {
+    fetchAlunos();
+    fetchProfessores();
+    checkAniversariantes();
+  }, []);
+
+  // Função para buscar alunos da API
+  const fetchAlunos = async () => {
+    try {
+      const res = await fetch('/api/alunos');
+      if (res.ok) {
+        const data = await res.json();
+        setAlunos(data);
+      } else {
+        console.error('Falha ao buscar alunos:', res.statusText);
+      }
+    } catch (error) {
+      console.error('Erro de rede ao buscar alunos:', error);
+    }
+  };
+
+  // Função para buscar professores da API
+  const fetchProfessores = async () => {
+    try {
+      const res = await fetch('/api/professores');
+      if (res.ok) {
+        const data = await res.json();
+        setProfessores(data);
+        // Inicializa o mapa de status dos professores
+        const initialCheckedMap: { [key: string]: boolean } = {};
+        data.forEach((prof: Professor) => {
+          initialCheckedMap[prof.id] = prof.status;
+        });
+        setIsCheckedMap(initialCheckedMap);
+      } else {
+        console.error('Falha ao buscar professores:', res.statusText);
+      }
+    } catch (error) {
+      console.error('Erro de rede ao buscar professores:', error);
+    }
+  };
+
+  // Função para verificar aniversariantes (simulada)
+  const checkAniversariantes = () => {
+    const today = new Date();
+    const currentMonth = today.getMonth() + 1; // getMonth() retorna 0-11
+    const currentDay = today.getDate();
+
+    // Dados de alunos com datas de nascimento (exemplo)
+    const alunosComAniversarios = [
+      { name: 'João Silva', dob: '1990-07-10' },
+      { name: 'Maria Souza', dob: '1992-07-11' },
+      { name: 'Pedro Alves', dob: '1991-08-01' },
+      // Adicione mais alunos com suas datas de nascimento aqui
+    ];
+
+    const aniversariantesDoDia = alunosComAniversarios.filter(aluno => {
+      const dob = new Date(aluno.dob);
+      return dob.getMonth() + 1 === currentMonth && dob.getDate() === currentDay;
+    }).map(aluno => aluno.name);
+
+    setAniversariantes(aniversariantesDoDia);
+  };
+
+  // Função para adicionar um novo aluno
+  const addAluno = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newAluno.name || !newAluno.login) {
+      alert('Nome e Login são obrigatórios.');
+      return;
+    }
+    try {
+      const res = await fetch('/api/alunos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newAluno),
+      });
+      if (res.ok) {
+        fetchAlunos(); // Atualiza a lista de alunos
+        setNewAluno({ name: '', login: '' }); // Limpa o formulário
+        setShowAddAluno(false); // Esconde o formulário
+      } else {
+        console.error('Falha ao adicionar aluno:', res.statusText);
+      }
+    } catch (error) {
+      console.error('Erro de rede ao adicionar aluno:', error);
+    }
+  };
+
+  // Função para excluir um aluno
+  const deleteAluno = async (id: number) => {
+    if (!confirm('Tem certeza que deseja excluir este aluno?')) return;
+    try {
+      const res = await fetch(`/api/alunos?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        fetchAlunos(); // Atualiza a lista de alunos
+      } else {
+        console.error('Falha ao excluir aluno:', res.statusText);
+      }
+    } catch (error) {
+      console.error('Erro de rede ao excluir aluno:', error);
+    }
+  };
+
+  // Função para adicionar um novo professor
+  const addProfessor = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // Lógica para adicionar professor
+    // ... (você precisará ter um estado para o novo professor, similar ao newAluno)
+    alert('Funcionalidade de adicionar professor não implementada na API de exemplo.');
+    setShowAddProfessor(false); // Esconde o formulário
+  };
+
+  // Função para buscar treinos de um aluno
+  const fetchTreinosByAlunoId = async (alunoId: number) => {
+    try {
+      const res = await fetch(`/api/treinos?alunoId=${alunoId}`);
+      if (res.ok) {
+        const data = await res.json();
+        setTreinos(data);
+        setTreinoError(null);
+      } else {
+        setTreinos([]);
+        setTreinoError('Nenhum treino encontrado para este aluno.');
+      }
+    } catch (error) {
+      console.error('Erro de rede ao buscar treinos:', error);
+      setTreinos([]);
+      setTreinoError('Erro ao carregar treinos.');
+    }
+  };
+
+  // Lidar com a seleção de um aluno para ver seus treinos
+  const handleSelectAluno = (aluno: Aluno) => {
+    setSelectedAluno(aluno);
+    fetchTreinosByAlunoId(aluno.id);
+  };
+
+  // Lidar com a alteração do status do professor
+  const handleToggleChange = async (professorId: number) => {
+    const currentStatus = isCheckedMap[professorId];
+    const newStatus = !currentStatus;
+
+    // Atualiza o estado visualmente primeiro para uma resposta rápida
+    setIsCheckedMap(prev => ({
+      ...prev,
+      [professorId]: newStatus
+    }));
+
+    try {
+      // Aqui você faria a chamada à sua API para atualizar o status no backend
+      const res = await fetch(`/api/professores?id=${professorId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!res.ok) {
+        // Se a atualização no backend falhar, reverte o estado visual
+        setIsCheckedMap(prev => ({
+          ...prev,
+          [professorId]: currentStatus
+        }));
+        console.error('Falha ao atualizar status do professor:', res.statusText);
+      }
+    } catch (error) {
+      // Em caso de erro de rede, reverte o estado visual
+      setIsCheckedMap(prev => ({
+        ...prev,
+        [professorId]: currentStatus
+      }));
+      console.error('Erro de rede ao atualizar status do professor:', error);
+    }
+  };
+
+  // Lidar com a alteração do status do aluno
+  const handleToggleAlunoStatus = async (aluno: Aluno) => {
+    const newStatus = !aluno.status;
+    const alunoParaAlterar = { ...aluno, status: newStatus };
+
+    try {
+      const res = await fetch(`/api/alunos?id=${aluno.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(alunoParaAlterar),
+      });
+
+      if (res.ok) {
+        // Atualiza o estado local dos alunos
+        setAlunos(
+          alunos.map((a) =>
+            a.id === aluno.id ? { ...a, status: newStatus } : a
+          )
+        );
+      } else {
+        console.error('Falha ao atualizar status do aluno:', res.statusText);
+      }
+    } catch (error) {
+      console.error('Erro de rede ao atualizar status do aluno:', error);
+    }
+  };
+
+  // Filtrar alunos pela barra de pesquisa
+  const filteredAlunos = alunos.filter(aluno =>
+    aluno.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Lógica de Paginação
+  const totalPages = Math.ceil(filteredAlunos.length / itemsPerPage);
+  const currentAlunos = filteredAlunos.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Funções para lidar com o modal de criação de treino
+  const handleAddExercicio = () => {
+    setNewExercicios([...newExercicios, { id: 0, name: '', series: 0, repetitions: 0 }]);
+  };
+
+  const handleRemoveExercicio = (index: number) => {
+    const updatedExercicios = [...newExercicios];
+    updatedExercicios.splice(index, 1);
+    setNewExercicios(updatedExercicios);
+  };
+
+  const handleExercicioChange = (index: number, field: keyof Exercicio, value: string | number) => {
+    const updatedExercicios = [...newExercicios];
+    // Garante que o ID seja único para cada exercício no formulário (simulação)
+    updatedExercicios[index] = { ...updatedExercicios[index], id: Date.now() + index, [field]: value };
+    setNewExercicios(updatedExercicios);
+  };
+
+  const handleCreateTreino = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newTreinoName || !selectedAluno || !selectedProfessorId || newExercicios.some(ex => !ex.name || ex.series <= 0 || ex.repetitions <= 0)) {
+      alert('Por favor, preencha todos os campos do treino e exercícios.');
+      return;
+    }
+
+    const treinoData = {
+      name: newTreinoName,
+      exercicios: newExercicios,
+      alunoId: selectedAluno.id,
+      professorId: selectedProfessorId,
+    };
+
+    try {
+      const res = await fetch('/api/treinos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(treinoData),
+      });
+
+      if (res.ok) {
+        alert('Treino criado com sucesso!');
+        setShowCreateTreinoModal(false);
+        setNewTreinoName('');
+        setNewExercicios([{ id: 0, name: '', series: 0, repetitions: 0 }]);
+        setSelectedProfessorId(null);
+        fetchTreinosByAlunoId(selectedAluno.id); // Atualiza a lista de treinos para o aluno
+      } else {
+        console.error('Falha ao criar treino:', res.statusText);
+        alert('Erro ao criar treino.');
+      }
+    } catch (error) {
+      console.error('Erro de rede ao criar treino:', error);
+      alert('Erro de rede ao criar treino.');
+    }
+  };
+
+  // Função para deletar um treino
+  const handleDeleteTreino = async (treinoId: number) => {
+    if (!confirm('Tem certeza que deseja excluir este treino?')) return;
+    try {
+      const res = await fetch(`/api/treinos?id=${treinoId}`, { method: 'DELETE' });
+      if (res.ok) {
+        alert('Treino excluído com sucesso!');
+        if (selectedAluno) {
+          fetchTreinosByAlunoId(selectedAluno.id); // Atualiza a lista de treinos
+        }
+      } else {
+        console.error('Falha ao excluir treino:', res.statusText);
+        alert('Erro ao excluir treino.');
+      }
+    } catch (error) {
+      console.error('Erro de rede ao excluir treino:', error);
+      alert('Erro de rede ao excluir treino.');
+    }
+  };
+
+  const toggleNotificationDropdown = () => {
+    setShowNotifications(!showNotifications);
+  };
+
+  return (
+    <div className={styles.dashboardContainer}>
+      {/* Mensagem de Boas-Vindas */}
+      <div className={styles.welcomeMessageContainer}>
+        <h1 className={styles.welcomeMessage}>
+          Bem-vindo(a) ao seu Painel de <span className={styles.nomeAlunaDestaque}>Administração!</span>
+        </h1>
+      </div>
+
+      {/* Linha Divisória */}
+      <hr className={styles.divider} />
+
+      {/* Header com o botão de Logout e notificações */}
+      <header className={styles.dashboardHeader}>
+        <h2 className={styles.dashboardTitle}>Painel de Administração</h2>
+        <div className={styles.headerIcons}>
+          <div className={styles.notificationIcon} onClick={toggleNotificationDropdown}>
+            <FaBell className={styles.bellIcon} />
+            {aniversariantes.length > 0 && (
+              <span className={styles.notificationBadge}>{aniversariantes.length}</span>
+            )}
+          </div>
+        </div>
+        <button onClick={() => router.push('/login')} className={styles.logoutButton}>
+          Logout
+        </button>
+      </header>
+
+      {/* Dropdown de Notificações */}
+      {showNotifications && (
+        <div className={styles.notificationDropdown}>
+          <h3>Notificações</h3>
+          <ul>
+            {aniversariantes.length > 0 ? (
+              aniversariantes.map((nome, index) => (
+                <li key={index}>🎂 {nome} faz aniversário hoje!</li>
+              ))
+            ) : (
+              <li>Nenhum aniversariante hoje.</li>
+            )}
+          </ul>
+        </div>
+      )}
+
+      {/* Botões para adicionar aluno/professor */}
+      <div className={styles.actionButtons}>
+        <button className={styles.addButton} onClick={() => setShowAddAluno(!showAddAluno)}>
+          {showAddAluno ? 'Cancelar' : 'Adicionar Novo Aluno'}
+        </button>
+        <button className={styles.addButton} onClick={() => setShowAddProfessor(!showAddProfessor)}>
+          {showAddProfessor ? 'Cancelar' : 'Adicionar Novo Professor'}
+        </button>
+      </div>
+
+      {/* Formulário de Adicionar Aluno (condicional) */}
+      {showAddAluno && (
+        <div className={styles.formContainer}>
+          <h3>Adicionar Novo Aluno</h3>
+          <form onSubmit={addAluno}>
+            <input
+              type="text"
+              placeholder="Nome do Aluno"
+              value={newAluno.name}
+              onChange={(e) => setNewAluno({ ...newAluno, name: e.target.value })}
+              className={styles.inputField}
+            />
+            <input
+              type="text"
+              placeholder="Login do Aluno"
+              value={newAluno.login}
+              onChange={(e) => setNewAluno({ ...newAluno, login: e.target.value })}
+              className={styles.inputField}
+            />
+            <button type="submit" className={styles.submitButton}>Adicionar</button>
+            <button type="button" onClick={() => setShowAddAluno(false)} className={styles.cancelButton}>Cancelar</button>
+          </form>
+        </div>
+      )}
+
+      {/* Formulário de Adicionar Professor (condicional - exemplo, ajustar com sua lógica real) */}
+      {showAddProfessor && (
+        <div className={styles.formContainer}>
+          <h3>Adicionar Novo Professor</h3>
+          <form onSubmit={addProfessor}>
+            <input type="text" placeholder="Nome do Professor" className={styles.inputField} />
+            <input type="text" placeholder="Login do Professor" className={styles.inputField} />
+            {/* Adicione campos para status, etc. */}
+            <button type="submit" className={styles.submitButton}>Adicionar</button>
+            <button type="button" onClick={() => setShowAddProfessor(false)} className={styles.cancelButton}>Cancelar</button>
+          </form>
+        </div>
+      )}
+
+      {/* Seção de Alunos */}
+      <div className={styles.projectsInner}>
+        <div className={styles.projectsHeader}>
+          <h2 className={styles.title}>Alunos</h2>
+          <span className={styles.count}>{filteredAlunos.length} Alunos</span>
+          <input
+            type="text"
+            placeholder="Buscar aluno..."
+            className={styles.searchInput}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <table className={styles.projectsTable}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Login</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentAlunos.map((aluno) => (
+              <tr key={aluno.id}>
+                <td>{aluno.id}</td>
+                <td>{aluno.name}</td>
+                <td>{aluno.login}</td>
+                <td>
+                  <div className={styles.toggle}>
+                    <input
+                      type="checkbox"
+                      id={`toggle-${aluno.id}`}
+                      className={styles.toggleCheckbox}
+                      checked={aluno.status ?? false} // Assume false se undefined
+                      onChange={() => handleToggleAlunoStatus(aluno)}
+                    />
+                    <label htmlFor={`toggle-${aluno.id}`} className={styles.toggleLabel}>
+                      <span className={styles.thumb}></span>
+                    </label>
+                  </div>
+                </td>
+                <td className={styles.actionButtons}>
+                  <button onClick={() => handleSelectAluno(aluno)}>Ver Treinos</button>
+                  <button onClick={() => deleteAluno(aluno.id)} className={styles.deleteButton}>Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {/* Paginação */}
+        <div className={styles.pagination}>
+          <button onClick={handlePrevPage} disabled={currentPage === 1} className={styles.paginationButton}>Anterior</button>
+          <span className={styles.paginationInfo}>Página {currentPage} de {totalPages}</span>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages} className={styles.paginationButton}>Próxima</button>
+        </div>
+      </div>
+
+      {/* Linha Divisória */}
+      <hr className={styles.divider} />
+
+      {/* Seção de Professores */}
+      <div className={styles.projectsInner}>
+        <div className={styles.projectsHeader}>
+          <h2 className={styles.title}>Professores</h2>
+          <span className={styles.count}>{professores.length} Professores</span>
+        </div>
+        <table className={styles.projectsTable}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Login</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {professores.map((professor) => (
+              <tr key={professor.id}>
+                <td>{professor.id}</td>
+                <td>{professor.name}</td>
+                <td>{professor.login}</td>
+                <td>
+                  <div className={styles.toggle}>
+                    <input
+                      type="checkbox"
+                      id={`toggle-prof-${professor.id}`}
+                      className={styles.toggleCheckbox}
+                      checked={isCheckedMap[professor.id] ?? false}
+                      onChange={() => handleToggleChange(professor.id)}
+                    />
+                    <label htmlFor={`toggle-prof-${professor.id}`} className={styles.toggleLabel}>
+                      <span className={styles.thumb}></span>
+                    </label>
+                  </div>
+                </td>
+                <td className={styles.actionButtons}>
+                  {/* Adicione botões de ação para professores, se necessário */}
+                  <button className={styles.deleteButton} /* onClick={() => deleteProfessor(professor.id)} */>Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Linha Divisória */}
+      <hr className={styles.divider} />
+
+      {/* Seção de Treinos do Aluno Selecionado */}
+      {selectedAluno && (
+        <div className={styles.treinosContainer}>
+          <h3>Treinos de {selectedAluno.name}</h3>
+          <button className={styles.createTreinoButton} onClick={() => setShowCreateTreinoModal(true)}>Criar Novo Treino</button>
+          <ul className={styles.listaTreinos}>
+            {selectedAluno.name === "Rayanne Luma Rodrigues da Silva" ? (
+              <li className={styles.itemTreino}>
+                <p className={styles.afastamentoMessage}>
+                  Teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês.
+                </p>
+              </li>
+            ) : (
+              treinos.length > 0 ? (
+                treinos.map((treino, index) => (
+                  <li key={treino.id} className={styles.itemTreino}>
+                    <h4><span className={styles.treinoNumero}>{index + 1}.</span> {treino.name}</h4>
+                    <p>Professor: {professores.find(p => p.id === treino.professorId)?.name || 'N/A'}</p>
+                    <h5>Exercícios:</h5>
+                    <ul>
+                      {treino.exercicios.map((exercicio, exIndex) => (
+                        <li key={exIndex}>
+                          {exercicio.name} ({exercicio.series} séries de {exercicio.repetitions} repetições)
+                        </li>
+                      ))}
+                    </ul>
+                    <button onClick={() => handleDeleteTreino(treino.id)} className={styles.deleteButton}>Excluir Treino</button>
+                  </li>
+                ))
+              ) : (
+                <li className={styles.itemTreino}>
+                  <p>{treinoError || 'Nenhum treino encontrado para este aluno.'}</p>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      )}
+
+      {/* Modal de Criação de Treino (condicional) */}
+      {showCreateTreinoModal && selectedAluno && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h3>Criar Treino para {selectedAluno.name}</h3>
+            <form onSubmit={handleCreateTreino}>
+              <label>Nome do Treino:</label>
+              <input
+                type="text"
+                className={styles.inputField}
+                value={newTreinoName}
+                onChange={(e) => setNewTreinoName(e.target.value)}
+                required
+              />
+
+              <label>Professor Responsável:</label>
+              <select
+                className={styles.inputField}
+                value={selectedProfessorId || ''}
+                onChange={(e) => setSelectedProfessorId(Number(e.target.value))}
+                required
+              >
+                <option value="">Selecione um Professor</option>
+                {professores.map(prof => (
+                  <option key={prof.id} value={prof.id}>{prof.name}</option>
+                ))}
+              </select>
+
+              <label>Exercícios:</label>
+              <div className={styles.exerciseContainer}>
+                {newExercicios.map((exercicio, index) => (
+                  <div key={index} className={styles.exerciseItem}>
+                    <input
+                      type="text"
+                      placeholder="Nome do Exercício"
+                      value={exercicio.name}
+                      onChange={(e) => handleExercicioChange(index, 'name', e.target.value)}
+                      required
+                    />
+                    <input
+                      type="number"
+                      placeholder="Séries"
+                      value={exercicio.series}
+                      onChange={(e) => handleExercicioChange(index, 'series', Number(e.target.value))}
+                      required
+                      min="1"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Repetições"
+                      value={exercicio.repetitions}
+                      onChange={(e) => handleExercicioChange(index, 'repetitions', Number(e.target.value))}
+                      required
+                      min="1"
+                    />
+                    <button type="button" onClick={() => handleRemoveExercicio(index)} className={styles.cancelButton}>Remover Exercício</button>
+                  </div>
+                ))}
+                <button type="button" onClick={handleAddExercicio} className={styles.addExerciseButton}>Adicionar Exercício</button>
+              </div>
+
+              <div className={styles.modalActions}>
+                <button type="submit">Salvar Treino</button>
+                <button type="button" onClick={() => setShowCreateTreinoModal(false)}>Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Footer do Painel */}
+      <footer className={styles.footer}>
+        <p>&copy; 2024 Fitness App. Todos os direitos reservados.</p>
+      </footer>
+    </div>
+  );
+};
+
+export default Administrador;
