@@ -719,16 +719,7 @@ const Administrador: React.FC = () => {
   };
 
   return (
-   <div className={styles.dashboardContainer}> {/* Esta é a linha 722 no seu erro */}
-    {/* Mensagem de Boas-Vindas */}
-    <div className={styles.welcomeMessageContainer}>
-      <h1 className={styles.welcomeMessage}>
-        A aluna <span className={styles.nomeAlunaDestaque}>Raiane Luna Rodrigues da Silva</span> teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês
-      </h1>
-    </div>
-
-    {/* Linha Divisória */}
-    <hr className={styles.divider} />
+   <div className={styles.dashboardContainer}> 
       {/* Header com o botão de Logout */}
       <header className={styles.dashboardHeader}>
         <h2 className={styles.dashboardTitle}>Painel de Administração</h2>
