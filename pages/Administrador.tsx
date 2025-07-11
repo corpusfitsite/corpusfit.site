@@ -719,35 +719,16 @@ const Administrador: React.FC = () => {
   };
 
   return (
-    <div className={styles.dashboardContainer}>
-     {/* Mensagem de Boas-Vindas */}
-       <div className={styles.welcomeMessageContainer}>
--        {alunoMensagem && matriculaDate && afastamentoInfo ? (
--          <h1 className={styles.welcomeMessage}>
--            A aluna <span className={styles.highlightText}>{alunoMensagem.name}</span>
--            teve sua matrícula feita em {matriculaDate}
--            depois esteve afastada desde {afastamentoInfo.date}, onde frequentou apenas {afastamentoInfo.days} dias do mês.
--          </h1>
--        ) : (
--          <h1 className={styles.welcomeMessage}>Escreva texto aqui</h1>
--        )}
-+        <h1 className={styles.welcomeMessage}>A aluna *Raiane Luna Rodrigues da Silva* teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês</h1>
-       </div>
- 
--      {/* Botão para definir os dados da mensagem (apenas para demonstração) */}
--      <button
--        onClick={() => {
--          // Simula a seleção de uma aluna e seus dados
--          setAlunoMensagem({ id: 1, name: "Fulana de Tal", login: "fulana" });
--          setMatriculaDate("março de 2024");
--          setAfastamentoInfo({ date: "fevereiro de 2025", days: 2 });
--        }}
--        className={styles.sampleDataButton}
--      >
--        Mostrar Mensagem Dinâmica
--      </button>
-+      {/* Linha Divisória */}
-      <hr className={styles.divider} /
+   <div className={styles.dashboardContainer}> {/* Esta é a linha 722 no seu erro */}
+    {/* Mensagem de Boas-Vindas */}
+    <div className={styles.welcomeMessageContainer}>
+      <h1 className={styles.welcomeMessage}>
+        A aluna <span className={styles.nomeAlunaDestaque}>Ana Clara</span> teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês
+      </h1>
+    </div>
+
+    {/* Linha Divisória */}
+    <hr className={styles.divider} />
       {/* Header com o botão de Logout */}
       <header className={styles.dashboardHeader}>
         <h2 className={styles.dashboardTitle}>Painel de Administração</h2>
