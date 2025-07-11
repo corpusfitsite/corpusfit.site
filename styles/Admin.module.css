@@ -32,63 +32,7 @@
   top: 8px;
   position: relative;
 }
-/* Contêiner da mensagem de boas-vindas */
-.welcomeMessageContainer {
-  text-align: center; /* Centraliza o texto */
-  margin-top: 20px; /* Espaçamento superior */
-  margin-bottom: 30px; /* Espaçamento inferior */
-  padding: 0 20px; /* Espaçamento lateral para telas menores */
-}
 
-/* Estilo da mensagem de boas-vindas */
-.welcomeMessage {
-  font-family: 'Georgia', serif; /* Exemplo de fonte elegante, você pode escolher outra */
-  font-size: 3.5em; /* Tamanho da fonte grande para desktops */
-  color: #333; /* Cor do texto */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para um efeito mais "elegante" */
-  font-weight: bold;
-  line-height: 1.2; /* Altura da linha para melhor legibilidade */
-}
-
-/* Estilo para destacar o nome da aluna */
-.nomeAlunaDestaque {
-  color: #0070f3; /* Uma cor azul para destacar */
-  font-weight: bold; /* Deixa o nome em negrito */
-  /* text-decoration: underline; */ /* Opcional: Adiciona um sublinhado */
-}
-
-/* --- */
-
-@media (max-width: 1024px) {
-  .welcomeMessage {
-    font-size: 2.8em; /* Tamanho da fonte para tablets */
-  }
-}
-
-@media (max-width: 768px) {
-  .welcomeMessage {
-    font-size: 2.2em; /* Tamanho da fonte para celulares */
-  }
-}
-
-@media (max-width: 480px) {
-  .welcomeMessage {
-    font-size: 1.8em; /* Tamanho da fonte para celulares menores */
-  }
-}
-
-/* Linha divisória */
-.divider {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.25),
-    rgba(0, 0, 0, 0)
-  );
-  margin: 40px 0; /* Espaçamento ao redor da linha */
-}
 /* Estilos para o botão de logout */
 .logoutButton {
   background-color: #dc3545;
