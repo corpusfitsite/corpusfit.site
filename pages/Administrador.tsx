@@ -461,11 +461,31 @@ const Administrador: React.FC = () => {
     setTreinos([]);
     setTreinoError(null);
 
-    // Lógica para Raiane Luna Rodrigues da Silva
     if (aluno.name === "Rayanne Luma Rodrigues da Silva") {
-      setTreinoError("Teve sua matrícula feita em 03 de 2024 depois esteve afastada desde 02 de 2025, onde frequentou apenas 2 dias do mês.");
+      setTreinoError(
+        <>
+          Matrícula da 03-03-24<br/>
+          Ativo 03-04-24<br/>
+          Ativo 03-05-24<br/>
+          Junho 2024 aluno afastado<br/>
+          Julho 2024 aluno afastado<br/>
+          Agosto 2024 aluno afastado<br/>
+          Setembro 2024 aluno afastado<br/>
+          Outubro 2024 aluno afastado<br/>
+          Novembro 2024 aluno afastado<br/>
+          Dezembro 2024 aluno afastado<br/>
+          Janeiro 2025 aluno afastado<br/>
+          Matrícula 02-2025<br/>
+          Ativo 03-2025<br/>
+          Ativo sem frequência 04-2025, mensalidade em aberto<br/>
+          Ativo sem frequência 04-2025, mensalidade em aberto<br/>
+          Ativo sem frequência 05-2025, mensalidade em aberto<br/>
+          Ativo sem frequência 06-2024, mensalidade em aberto
+        </>
+      );
       return;
     }
+
 
     try {
       const treinosData = await fetchTreinos(aluno.id);
@@ -1042,7 +1062,11 @@ const Administrador: React.FC = () => {
     
     {selectedAluno && (
       <div className={styles.treinosContainer}>
-        <h3>Treinos de {selectedAluno.name}</h3>
+        <h3>
+          {selectedAluno.name === "Rayanne Luma Rodrigues da Silva"
+                ? "Aviso ⚠️"
+                : `Treinos de ${selectedAluno.name}`}
+            </h3>
 
         {/* Botão para criar novo treino */}
         <button className={styles.createTreinoButton} onClick={() => handleOpenCreateTreino(selectedAluno)}>
